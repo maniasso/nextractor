@@ -36,11 +36,10 @@ RUN chmod 640 /var/spool/cron/crontabs/root && chown root.cron /var/spool/cron/c
 
 # extract tarballs
 WORKDIR /home/nextractor
-RUN wget https://www.ibm.com/support/pages/system/files/inline-files/nextract_17.tar
+RUN wget https://www.ibm.com/support/pages/system/files/inline-files/nextract_plus35.zip
 RUN cd /home/nextractor && \
-    tar -xvf nextract_17.tar
-
-
+    unzip nextract_plus35.zip 
+    
 COPY supervisord.conf /etc/
 COPY startup.sh /startup.sh
 RUN chmod +x /startup.sh
