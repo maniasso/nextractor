@@ -26,7 +26,8 @@ if [ -f /firstrun ]; then
         crontab -u root /var/spool/cron/crontabs/root
         wget https://www.ibm.com/support/pages/system/files/inline-files/nextract_plus35.zip
         cd /home/nextractor && unzip nextract_plus35.zip
-        
+         
+        cd /home/nextractor
         for i in `ls /home/nextractor/*.conf | grep -v example`
         do 
         echo "30 * * * * /home/nextractor/nextract_plus.py $i" >> /var/spool/cron/crontabs/root
