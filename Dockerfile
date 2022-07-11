@@ -30,10 +30,8 @@ RUN mkdir -p /home/nextractor
 
 
 #COPY configs/crontab /var/spool/cron/crontabs/root
-RUN rm /var/spool/cron/crontabs/root && \
-   touch /home/nextractor/root && \
-   ln -s /home/nextractor/root /var/spool/cron/crontabs/root && \
-   chmod 640 /var/spool/cron/crontabs/root && chown root.cron /var/spool/cron/crontabs/root
+RUN chmod 640 /var/spool/cron/crontabs/root && chown root.cron /var/spool/cron/crontabs/root && \
+    echo "0,10,20,30,40,50 * * * * /home/nextractor/nextract_server.py 1>/tmp/nextract_server.log 2>/tmp/nextract_server.err" >> /var/spool/cron/crontabs/root
 
 
 # extract tarballs
