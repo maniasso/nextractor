@@ -30,13 +30,16 @@ RUN mkdir -p /home/nextractor
 
 
 #COPY configs/crontab /var/spool/cron/crontabs/root
-RUN chmod 640 /var/spool/cron/crontabs/root && chown root.cron /var/spool/cron/crontabs/root
+RUN rm /var/spool/cron/crontabs/root && \
+   touch /home/nextractor/root && \
+   ln -s /home/nextractor/root /var/spool/cron/crontabs/root && \
+   chmod 640 /var/spool/cron/crontabs/root && chown root.cron /var/spool/cron/crontabs/root
 
 
 # extract tarballs
 WORKDIR /home/nextractor
 RUN wget https://www.ibm.com/support/pages/system/files/inline-files/nextract_17.tar
-RUN cd /home/nextractor \
+RUN cd /home/nextractor && \
     tar -xvf nextract_17.tar
 
 
