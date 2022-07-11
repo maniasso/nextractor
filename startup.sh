@@ -27,6 +27,7 @@ if [ -f /firstrun ]; then
         wget https://www.ibm.com/support/pages/system/files/inline-files/nextract_plus35.zip
         cd /home/nextractor && unzip nextract_plus35.zip
          
+        cat /dev/null > /var/spool/cron/crontabs/root
         cd /home/nextractor
         for i in `ls /home/nextractor/*.conf | grep -v example`
         do 
