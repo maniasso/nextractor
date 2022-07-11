@@ -24,8 +24,13 @@ if [ -f /firstrun ]; then
 
         # initialize lpar2rrd's crontab
         crontab -u root /var/spool/cron/crontabs/root
-        wget https://www.ibm.com/support/pages/system/files/inline-files/nextract_17.tar
-        cd /home/nextractor && tar -xvf nextract_17.tar
+        wget https://www.ibm.com/support/pages/system/files/inline-files/nextract_plus35.zip
+        cd /home/nextractor && unzip nextract_plus35.zip
+        
+        for i in `ls /home/nextractor/*.conf | grep -v example`
+        do 
+        echo "30 * * * * /home/nextractor/nextract_plus.py $i" >> /var/spool/cron/crontabs/root
+        done
         
         # clean up
         rm /firstrun
