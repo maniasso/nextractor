@@ -24,7 +24,9 @@ if [ -f /firstrun ]; then
 
         # initialize lpar2rrd's crontab
         crontab -u root /var/spool/cron/crontabs/root
-
+        wget https://www.ibm.com/support/pages/system/files/inline-files/nextract_17.tar
+        cd /home/nextractor && tar -xvf nextract_17.tar
+        
         # clean up
         rm /firstrun
 fi
